@@ -4,7 +4,6 @@ import time
 
 from billboard_problem.HighwaySampleReader import HighwaySampleReader
 from billboard_problem.RevenueCalculator import RevenueCalculator
-from billboard_problem.HighwaySampleGenerator import HighwaySampleGenerator
 
 
 def main():
@@ -34,7 +33,7 @@ def parse_args():
 
 def solve_all_tabulation(samples, minimum_distance):
     for i in range(0, len(samples), 2):
-        print("[TAB] Solving: \n", samples[i], "\n", samples[i + 1])
+        print("[TAB] Solving:")
         start_time = time.time()
         print("\nresult: ", RevenueCalculator.max_revenue_tabulation(samples[i], samples[i + 1], minimum_distance))
         elapsed_time = time.time() - start_time
@@ -43,22 +42,23 @@ def solve_all_tabulation(samples, minimum_distance):
 
 def solve_all_memoization(samples, minimum_distance):
     revenue_calculator = RevenueCalculator()
+
     try:
-        dict_file = open('dict.dat', 'r')
+        dict_file = open('dict.dat', 'rb')
         revenue_calculator.set_dictionary(pickle.load(dict_file))
-        print("foo")
+        print(revenue_calculator.dictionary)
     except:
         pass
 
     for i in range(0, len(samples), 2):
-        print("[MEM] Solving: \n", samples[i], "\n", samples[i + 1])
+        print("[MEM] Solving:")
         start_time = time.time()
         print("\nresult: ", revenue_calculator.max_revenue_memoization(samples[i], samples[i + 1], minimum_distance))
         elapsed_time = time.time() - start_time
         print("time: ", elapsed_time, " s", "\n")
 
     try:
-        dict_file = open('dict_file', 'w')
+        dict_file = open('dict.dat', 'wb')
         pickle.dump(revenue_calculator.dictionary, dict_file)
     except:
         pass
