@@ -2,7 +2,8 @@ class RevenueCalculator:
     def __init__(self):
         self.dictionary = {}
 
-    def max_revenue_tabulation(self, total_miles, possible_positions, revenue, min_distance):
+    @staticmethod
+    def max_revenue_tabulation(total_miles, possible_positions, revenue, min_distance):
         """
         Find the maximum revenue by placing billboards on the highway
         with a minimum distance constraint. Uses a tabulation approach.
@@ -50,11 +51,8 @@ class RevenueCalculator:
 
         return max_rev[total_miles]
 
-    def max_revenue_memoization_aux(self, possible_positions, revenue, min_distance, miles):
-        max_rev = [0] * (miles + 1)
-
     def max_revenue_memoization(self, possible_positions, revenue, min_distance):
-        current_pos_key = tuple(possible_positions + revenue)
+        current_pos_key = tuple([min_distance] + possible_positions + revenue)
 
         if current_pos_key in self.dictionary:
             return self.dictionary[current_pos_key]

@@ -1,15 +1,14 @@
+from billboard_problem.HighwaySampleReader import HighwaySampleReader
 from billboard_problem.RevenueCalculator import RevenueCalculator
+from billboard_problem.HighwaySampleGenerator import HighwaySampleGenerator
 
 
 def main():
-    m = 100
-    x = [2, 6, 7, 12, 13, 14, 20]
-    revenue = [7, 5, 6, 5, 3, 1, 7]
-    t = 5
-    revenue_calculator = RevenueCalculator()
-    print(revenue_calculator.max_revenue_tabulation(m, x, revenue, t))
-    print(revenue_calculator.max_revenue_memoization(x, revenue, t))
-    print(revenue_calculator.dictionary)
+    samples = HighwaySampleReader.read_all_samples("asdasd.txt")
+    HighwaySampleGenerator.generate_new_extended_highway_to_file("asdasd.txt", samples[0], samples[1], 3, 2, 10)
+    samples = HighwaySampleReader.read_all_samples("asdasd.txt")
+    for element in samples:
+        print(element)
 
 
 if __name__ == '__main__':
