@@ -2,12 +2,14 @@ class RevenueCalculator:
     def __init__(self):
         self.dictionary = {}
 
+    def set_dictionary(self, dictionary):
+        self.dictionary = dictionary
+
     @staticmethod
-    def max_revenue_tabulation(total_miles, possible_positions, revenue, min_distance):
+    def max_revenue_tabulation(possible_positions, revenue, min_distance):
         """
         Find the maximum revenue by placing billboards on the highway
         with a minimum distance constraint. Uses a tabulation approach.
-        :param total_miles: the total number of miles
         :param possible_positions: an array with the possible billboard positions
         :param revenue: an array with the revenue for each possible billboard position
         :param min_distance: the distance constraint, no billboard can be placed within
@@ -16,6 +18,7 @@ class RevenueCalculator:
         """
 
         total_positions = len(possible_positions)
+        total_miles = possible_positions[total_positions - 1]
 
         # Stores the maximum revenue for each mile
         max_rev = [0] * (total_miles + 1)
