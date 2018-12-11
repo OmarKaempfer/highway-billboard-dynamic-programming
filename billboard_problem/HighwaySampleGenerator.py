@@ -5,7 +5,7 @@ class HighwaySampleGenerator:
 
     @staticmethod
     def generate_random_highway(starting_point, upper_distance_bound, upper_revenue_bound, size):
-        previous_distance = 0
+        previous_distance = starting_point
         billboard_positions = []
         revenue_positions = []
 
@@ -28,8 +28,9 @@ class HighwaySampleGenerator:
         text_file.close()
 
     @staticmethod
-    def generate_new_sample_to_file(file_path, upper_distance_bound, upper_revenue_bound, size):
-        sample = HighwaySampleGenerator.generate_random_highway(0, upper_distance_bound, upper_revenue_bound, size)
+    def generate_new_sample_to_file(starting_point, file_path, upper_distance_bound, upper_revenue_bound, size):
+        sample = HighwaySampleGenerator.generate_random_highway(starting_point, upper_distance_bound,
+                                                                upper_revenue_bound, size)
         HighwaySampleGenerator.write_list_to_file(sample[0], file_path)
         HighwaySampleGenerator.write_list_to_file(sample[1], file_path)
 
