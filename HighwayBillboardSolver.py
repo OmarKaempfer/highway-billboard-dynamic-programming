@@ -46,7 +46,6 @@ def solve_all_memoization(samples, minimum_distance):
     try:
         dict_file = open('dict.dat', 'rb')
         revenue_calculator.set_dictionary(pickle.load(dict_file))
-        print(revenue_calculator.dictionary)
     except:
         pass
 
