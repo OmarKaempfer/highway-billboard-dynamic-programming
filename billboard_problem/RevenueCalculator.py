@@ -55,6 +55,15 @@ class RevenueCalculator:
         return max_rev[total_miles]
 
     def max_revenue_memoization(self, possible_positions, revenue, min_distance):
+        """
+        Find the maximum revenue by placing billboards on the highway
+        with a minimum distance constraint. Uses a memoization approach.
+        :param possible_positions: an array with the possible billboard positions
+        :param revenue: an array with the revenue for each possible billboard position
+        :param min_distance: the distance constraint, no billboard can be placed within
+        t miles or less than it
+        :return: the maximum possible revenue
+        """
         current_pos_key = tuple([min_distance] + possible_positions + revenue)
 
         if current_pos_key in self.dictionary:
@@ -62,6 +71,7 @@ class RevenueCalculator:
 
         else:
             # si tenemos un solo elemento, éste será el máximo revenue
+
             if len(possible_positions) == 1:
                 self.dictionary[current_pos_key] = revenue[0]
                 return self.dictionary[current_pos_key]
